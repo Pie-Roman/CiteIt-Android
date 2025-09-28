@@ -1,4 +1,4 @@
-package ru.pyroman.citeit.ui.theme
+package ru.pyroman.citeit.base.uikit.theme
 
 import androidx.compose.ui.graphics.Color
 

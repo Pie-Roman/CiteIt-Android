@@ -49,4 +49,12 @@ dependencies {
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
+
+    implementation(project(":base:uikit"))
+
+    implementation(project(":data:quote-data"))
+
+    implementation(project(":domain:quote-domain"))
+
+    implementation(project(":feature:start-feature"))
 }

@@ -21,4 +21,13 @@ dependencyResolutionManagement {
 
 rootProject.name = "CiteIt"
 include(":app")
+
+include(":base:uikit")
+
+include(":data:common-data")
+include(":data:quote-data")
+
+include(":domain:quote-domain")
+
+include(":feature:start-feature")
  
