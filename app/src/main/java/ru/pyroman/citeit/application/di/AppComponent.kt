@@ -4,9 +4,10 @@ import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
 import ru.pyroman.citeit.activity.di.MainActivityComponent
+import javax.inject.Singleton
 
 @Component(modules = [AppModule::class])
-@ApplicationScope
+@Singleton
 interface AppComponent {
 
     @Component.Factory

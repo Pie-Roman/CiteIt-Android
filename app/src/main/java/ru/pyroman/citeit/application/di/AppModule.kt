@@ -4,16 +4,18 @@ import android.app.Application
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.migration.DisableInstallInCheck
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
-@DisableInstallInCheck
+@InstallIn(SingletonComponent::class)
 interface AppModule {
 
     companion object {
 
         @Provides
-        @ApplicationScope
+        @Singleton
         fun applicationContext(
             application: Application,
         ): Context {
