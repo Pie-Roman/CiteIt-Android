@@ -29,5 +29,6 @@ include(":data:quote-data")
 
 include(":domain:quote-domain")
 
+include(":feature:main-feature")
 include(":feature:start-feature")
  

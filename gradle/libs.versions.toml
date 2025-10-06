@@ -25,7 +25,7 @@ androidx-compose-foundation = { module = "androidx.compose.foundation:foundation
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
 androidx-compose-uitooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-uitoolingpreview = { module = "androidx.compose.ui:ui-tooling-preview" }
-androidx-compose-material-icons = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
+androidx-compose-material-icons = { module = "androidx.compose.material:material-icons-extended" }
 
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation-compose" }

@@ -56,5 +56,6 @@ dependencies {
 
     implementation(project(":domain:quote-domain"))
 
+    implementation(project(":feature:main-feature"))
     implementation(project(":feature:start-feature"))
 }
