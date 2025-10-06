@@ -14,4 +14,11 @@ internal class QuoteNetworkRepository @Inject constructor(
         val quoteDto = dataSource.getRandomQuote()
         return mapper.map(quoteDto)
     }
+
+    suspend fun getQuoteList(): List<Quote> {
+        val quoteListDto = dataSource.getQuoteList()
+        return quoteListDto.map { quoteDto ->
+            mapper.map(quoteDto)
+        }
+    }
 }

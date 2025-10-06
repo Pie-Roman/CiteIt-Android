@@ -9,6 +9,9 @@ internal interface QuoteNetworkApi {
     @GET("random")
     suspend fun getRandomQuote(): List<QuoteNetworkDto>
 
+    @GET("quotes")
+    suspend fun getQuoteList(): List<QuoteNetworkDto>
+
     companion object {
 
         fun build(): QuoteNetworkApi = RetrofitBuilder()

@@ -9,8 +9,10 @@ internal class QuoteNetworkMapper @Inject constructor() {
     fun map(dto: QuoteNetworkDto): Quote {
         val quote = requireNotNull(dto.text)
         val author = dto.author.orEmpty()
+        val id = "${quote}_${author}"
 
         return Quote(
+            id = id,
             text = quote,
             author = author,
         )

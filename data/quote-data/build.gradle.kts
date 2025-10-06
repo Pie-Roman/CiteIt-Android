@@ -20,6 +20,8 @@ dependencies {
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
 
+    implementation(libs.kotlinx.corountines.core)
+
     implementation(project(":data:common-data"))
     implementation(project(":domain:quote-domain"))
 }

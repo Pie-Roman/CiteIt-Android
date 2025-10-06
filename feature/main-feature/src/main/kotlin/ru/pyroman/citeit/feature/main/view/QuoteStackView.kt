@@ -3,6 +3,7 @@ package ru.pyroman.citeit.feature.main.view
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,14 +27,16 @@ fun QuotesStackView(
                 val reverseIndex = (quotes.lastIndex - index).toDouble()
 
                 if (reverseIndex < numberOfVisible) {
-                    QuoteView(
-                        quote = quote,
-                        index = index,
-                        reverseIndex = reverseIndex,
-                        textPadding = ((1 - reverseIndex) * 20).toFloat(),
-                        isTextShown = reverseIndex < 2,
-                        onDragEnd = onQuoteDragEnd,
-                    )
+                    key(quote.id) {
+                        QuoteView(
+                            quote = quote,
+                            index = index,
+                            reverseIndex = reverseIndex,
+                            textPadding = ((1 - reverseIndex) * 20).toFloat(),
+                            isTextShown = reverseIndex < 2,
+                            onDragEnd = onQuoteDragEnd,
+                        )
+                    }
                 }
             }
         }
@@ -47,22 +50,27 @@ fun QuotesStackViewPreview() {
         QuotesStackView(
             quotes = listOf(
                 Quote(
+                    id = "1",
                     text = "Some quote",
                     author = "Some author",
                 ),
                 Quote(
+                    id = "2",
                     text = "Some quote",
                     author = "Some author",
                 ),
                 Quote(
+                    id = "3",
                     text = "Some quote",
                     author = "Some author",
                 ),
                 Quote(
+                    id = "4",
                     text = "Some quote",
                     author = "Some author",
                 ),
                 Quote(
+                    id = "5",
                     text = "Some quote",
                     author = "Some author",
                 ),

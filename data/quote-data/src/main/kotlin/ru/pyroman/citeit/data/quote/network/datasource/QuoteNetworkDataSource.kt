@@ -11,4 +11,8 @@ internal class QuoteNetworkDataSource @Inject constructor(
     suspend fun getRandomQuote(): QuoteNetworkDto {
         return api.getRandomQuote().first()
     }
+
+    suspend fun getQuoteList(): List<QuoteNetworkDto> {
+        return api.getQuoteList()
+    }
 }
