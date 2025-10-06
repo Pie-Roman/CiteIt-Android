@@ -2,6 +2,7 @@ package ru.pyroman.citeit.data.quote.network.mapper
 
 import ru.pyroman.citeit.data.quote.network.dto.QuoteNetworkDto
 import ru.pyroman.citeit.domain.quote.model.Quote
+import ru.pyroman.citeit.domain.quote.model.QuoteColor
 import javax.inject.Inject
 
 internal class QuoteNetworkMapper @Inject constructor() {
@@ -15,6 +16,7 @@ internal class QuoteNetworkMapper @Inject constructor() {
             id = id,
             text = quote,
             author = author,
+            color = QuoteColor.random(),
         )
     }
 }

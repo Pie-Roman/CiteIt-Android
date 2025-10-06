@@ -23,7 +23,7 @@ internal class QuoteRepositoryImpl @Inject constructor(
     }
 
     override suspend fun removeLastQuote() {
-        val newQuoteList = quoteList.value.dropLast(1)
+        val newQuoteList = quoteList.value.drop(1)
         _quoteList.emit(newQuoteList)
     }
 }

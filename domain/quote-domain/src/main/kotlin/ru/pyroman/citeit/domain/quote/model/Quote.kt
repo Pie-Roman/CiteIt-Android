@@ -4,4 +4,5 @@ data class Quote(
     val id: String,
     val text: String,
     val author: String,
+    val color: QuoteColor,
 )

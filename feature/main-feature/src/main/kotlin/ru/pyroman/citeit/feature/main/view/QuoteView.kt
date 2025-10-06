@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
@@ -21,40 +22,45 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import ru.pyroman.citeit.domain.quote.model.Quote
 import kotlin.math.abs
-import kotlin.random.Random
+import kotlin.math.roundToInt
 
 @Composable
 fun QuoteView(
     quote: Quote,
     index: Int,
-    reverseIndex: Double,
+    reverseIndex: Int,
     textPadding: Float,
     isTextShown: Boolean,
     onDragEnd: () -> Unit,
 ) {
-    var offsetX by remember { mutableFloatStateOf(0f) }
-    var rotation by remember { mutableFloatStateOf((reverseIndex * 8).toFloat()) }
+    var offsetX by remember { mutableFloatStateOf((index * 40).toFloat()) }
+    var rotation by remember { mutableFloatStateOf((index * 8).toFloat()) }
 
     val animatedOffsetX by animateFloatAsState(targetValue = offsetX)
     val animatedRotation by animateFloatAsState(targetValue = rotation)
-    val backgroundColor = remember { generateRandomColor() }
 
-    val screenWidth = LocalWindowInfo.current.containerSize.width.dp
-    val screenHeight = LocalWindowInfo.current.containerSize.height.dp
+    val density = LocalDensity.current
+    val screenWidth = LocalWindowInfo.current.containerSize.width
+    val screenHeight = LocalWindowInfo.current.containerSize.height
+
+    val width = with(density) { (screenWidth * 0.75).toFloat().toDp() }
+    val height = with(density) { (screenHeight * 0.5).toFloat().toDp() }
 
     Box(
         modifier = Modifier
+            .offset { IntOffset(animatedOffsetX.roundToInt(), 0) }
             .pointerInput(Unit) {
                 detectDragGestures(
                     onDrag = { change, dragAmount ->
@@ -75,24 +81,23 @@ fun QuoteView(
                     }
                 )
             }
-            .offset(x = (reverseIndex * 35).dp)
-            .padding(all = (reverseIndex * 20).dp)
-            .rotate(reverseIndex.toFloat() * 8f)
+            .padding(all = (index * 20).dp)
             .graphicsLayer {
                 translationX = animatedOffsetX
                 rotationZ = animatedRotation
             }
-            .width(screenWidth * 0.75f)
-            .height(screenHeight * 0.5f)
-            .zIndex(index.toFloat())
+            .width(width)
+            .height(height)
+            .zIndex(reverseIndex.toFloat())
             .padding(20.dp)
             .clip(RoundedCornerShape(20.dp))
-            .background(backgroundColor),
+            .background(Color(quote.color.red, quote.color.green, quote.color.blue)),
     ) {
         Column(
             modifier = Modifier
                 .padding(20.dp)
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .fillMaxHeight(),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
 
@@ -107,7 +112,6 @@ fun QuoteView(
                 )
             }
 
-            // Текст цитаты
             if (isTextShown) {
                 Text(
                     text = quote.text,
@@ -122,7 +126,6 @@ fun QuoteView(
                 )
             }
 
-            // Нижняя кавычка
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.End
@@ -135,9 +138,4 @@ fun QuoteView(
             }
         }
     }
-}
-
-private fun generateRandomColor(): Color {
-    fun rand() = (Random.nextFloat() * (0.9f - 0.4f) + 0.4f - 0.1f).coerceIn(0f, 1f)
-    return Color(rand(), rand(), rand())
 }

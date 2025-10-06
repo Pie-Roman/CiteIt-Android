@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import ru.pyroman.citeit.base.uikit.theme.CiteItTheme
 import ru.pyroman.citeit.domain.quote.model.Quote
+import ru.pyroman.citeit.domain.quote.model.QuoteColor
 
 @Composable
 fun QuotesStackView(
@@ -24,16 +25,16 @@ fun QuotesStackView(
             contentAlignment = Alignment.Center
         ) {
             quotes.forEachIndexed { index, quote ->
-                val reverseIndex = (quotes.lastIndex - index).toDouble()
+                val reverseIndex = (quotes.lastIndex - index)
 
-                if (reverseIndex < numberOfVisible) {
+                if (index < numberOfVisible) {
                     key(quote.id) {
                         QuoteView(
                             quote = quote,
                             index = index,
                             reverseIndex = reverseIndex,
-                            textPadding = ((1 - reverseIndex) * 20).toFloat(),
-                            isTextShown = reverseIndex < 2,
+                            textPadding = ((1 - index) * 20).toFloat(),
+                            isTextShown = index < 2,
                             onDragEnd = onQuoteDragEnd,
                         )
                     }
@@ -53,26 +54,31 @@ fun QuotesStackViewPreview() {
                     id = "1",
                     text = "Some quote",
                     author = "Some author",
+                    color = QuoteColor.random(),
                 ),
                 Quote(
                     id = "2",
                     text = "Some quote",
                     author = "Some author",
+                    color = QuoteColor.random(),
                 ),
                 Quote(
                     id = "3",
                     text = "Some quote",
                     author = "Some author",
+                    color = QuoteColor.random(),
                 ),
                 Quote(
                     id = "4",
                     text = "Some quote",
                     author = "Some author",
+                    color = QuoteColor.random(),
                 ),
                 Quote(
                     id = "5",
                     text = "Some quote",
                     author = "Some author",
+                    color = QuoteColor.random(),
                 ),
             ),
             onQuoteDragEnd = {},
