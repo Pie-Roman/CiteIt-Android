@@ -33,8 +33,8 @@ fun QuoteView(
     val screenWidth = LocalWindowInfo.current.containerSize.width
     val screenHeight = LocalWindowInfo.current.containerSize.height
 
-    val width = with(density) { (screenWidth * 0.75f).toFloat().toDp() }
-    val height = with(density) { (screenHeight * 0.5f).toFloat().toDp() }
+    val width = with(density) { (screenWidth * 0.75f).toDp() }
+    val height = with(density) { (screenHeight * 0.5f).toDp() }
 
     Box(
         modifier = modifier
