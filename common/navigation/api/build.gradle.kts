@@ -2,12 +2,10 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.dagger.hilt.android)
 }
 
 android {
-    namespace = "ru.pyroman.citeit.feature.main"
+    namespace = "ru.pyroman.citeit.common.navigation.api"
     compileSdk = 35
     defaultConfig {
         minSdk = 24
@@ -30,11 +28,4 @@ dependencies {
     implementation(libs.androidx.compose.uitoolingpreview)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material.icons)
-
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
-
-    implementation(project(":base:uikit"))
-    api(project(":data:quote-data"))
-    api(project(":domain:quote-domain"))
 }

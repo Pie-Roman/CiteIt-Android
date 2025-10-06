@@ -24,6 +24,9 @@ include(":app")
 
 include(":base:uikit")
 
+include(":common:navigation")
+include(":common:navigation:api")
+
 include(":data:common-data")
 include(":data:quote-data")
 

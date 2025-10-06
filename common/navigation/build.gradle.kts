@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.pyroman.citeit.feature.main"
+    namespace = "ru.pyroman.citeit.common.navigation"
     compileSdk = 35
     defaultConfig {
         minSdk = 24
@@ -34,7 +34,8 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
 
-    implementation(project(":base:uikit"))
-    api(project(":data:quote-data"))
-    api(project(":domain:quote-domain"))
+    implementation(project(":common:navigation:api"))
+
+    implementation(project(":feature:start-feature"))
+    implementation(project(":feature:main-feature"))
 }

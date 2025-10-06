@@ -33,13 +33,15 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.navigation.NavController
+import ru.pyroman.citeit.common.navigation.Screen
 import ru.pyroman.citeit.feature.start.viewmodel.StartViewModel
 
 @Composable
 fun StartView(
-    modifier: Modifier,
-    viewModel: StartViewModel = viewModel(),
+    navController: NavController,
+    viewModel: StartViewModel = hiltViewModel(),
 ) {
 
     val showContinueButtonState by viewModel.showContinueButton.collectAsState()
@@ -69,7 +71,7 @@ fun StartView(
     }
 
     Box(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFE9626E))
     ) {
@@ -117,7 +119,9 @@ fun StartView(
                     .offset(y = offsetY.dp)
                     .rotate(rotation)
                     .alpha(if (showContinueButtonState) 1f else 0f),
-                onClick = { /*...*/ },
+                onClick = {
+                    navController.navigate(Screen.Main.route)
+                },
             ) {
                 Icon(
                     modifier = Modifier

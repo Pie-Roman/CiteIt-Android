@@ -33,6 +33,8 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
 
-    implementation(project(":data:quote-data"))
-    implementation(project(":domain:quote-domain"))
+    implementation(project(":common:navigation:api"))
+
+    api(project(":data:quote-data"))
+    api(project(":domain:quote-domain"))
 }

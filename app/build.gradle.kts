@@ -52,6 +52,8 @@ dependencies {
 
     implementation(project(":base:uikit"))
 
+    implementation(project(":common:navigation"))
+
     implementation(project(":data:quote-data"))
 
     implementation(project(":domain:quote-domain"))
